@@ -1,0 +1,134 @@
+//Menu Button
+.menu-btn {
+    position: absolute;
+    z-index: 3;
+    top: 40px;
+    right: 40px;
+    cursor: pointer;
+    @include easeOut;
+
+    .btn-line {
+        width: 28px;
+        height: 3px;
+        margin: 5px 0;
+        background: setTextColor($backgroundColor);
+        @include easeOut;
+    }
+
+    //Rotate Into X
+    &.close {
+        transform: rotate(180deg);
+
+        .btn-line {
+            //Line 1 -Rotate
+            &:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            //Line 2 - Hide
+            &:nth-child(2) {
+                opacity: 0;
+            }
+
+            //Line 2 - Rotate
+            &:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+        }
+    }
+}
+
+//Menu Overlay
+.menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    //opacity: .9;
+    visibility: hidden;
+
+    &.show {
+        visibility: visible;
+    }
+
+    &-branding,
+    &-nav {
+        display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        float: left;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    &-nav {
+        background: rgba(darken($backgroundColor, 5), .9);
+        transform: translate3d(0, -100%, 0);
+        @include easeOut;
+
+        &.show {
+            //Slide in from top
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    //Branding Side
+    &-branding {
+        background: rgba($backgroundColor, .9);
+        transform: translate3d(0, 100%, 0);
+        @include easeOut;
+
+        &.show {
+            //Slide in from bottom
+            transform: translate3d(0, 0, 0);
+        }
+
+        .portrait {
+            border-radius: 50%;
+            border: 3px solid $secondaryTextColor;
+
+            &-image {
+                height: 250px;
+                width: 250px;
+                background: url("../img/portrait_small.jpg") no-repeat;
+                border-radius: 50%;
+                background-size: cover;
+                filter: grayscale(100%);
+            }
+        }
+    }
+
+    .nav-item {
+        transform: translate3d(600px, 0, 0);
+        @include easeOut;
+
+        &.show {
+            //Slide in from right
+            transform: translate3d(0, 0, 0);
+        }
+
+        &.current > a {
+            color: $secondaryTextColor;
+        }
+    }
+    .nav-link {
+        display: inline-block;
+        position: relative;
+        font-size: 2rem;
+        text-transform: uppercase;
+        line-height: 4rem;
+        @include easeOut;
+
+        &:hover {
+            color: $secondaryTextColor;
+        }
+    }
+}
+
+//Delay each nav item slide by 0.1s
+@for $x from 1 through 4 {
+    .nav-item:nth-child(#{$x}) {
+        transition-delay: $x * .1s;
+    }
+}

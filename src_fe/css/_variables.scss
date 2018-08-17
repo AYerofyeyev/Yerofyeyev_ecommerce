@@ -1,0 +1,77 @@
+// Colors
+$white: #fff;
+$grey: #444;
+$yellow: #e1de99;
+$black: #000;
+
+//Color theme
+$backgroundColor: $yellow;
+$primaryTextColor: $white;
+$secondaryTextColor: $yellow;
+
+//Images
+//$showHomeImage: true;
+//$homeImage: url(../img/background.jpg);
+//$backgroundOpacity: .7;
+
+//Mixins
+@mixin easeOut {
+    transition: all .5s ease-out;
+}
+
+@mixin background {
+    @if $showHomeImage {
+        &#bg-img {
+            background: $homeImage;
+            background-attachment: fixed;
+            background-size: cover;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: rgba($backgroundColor, $backgroundOpacity);
+      }
+    }
+  }
+}
+
+//Set Text Color
+@function setTextColor($color) {
+    @if (lightness($color) > 40) {
+        @return $black;
+    } @else {
+        @return $white;
+    }
+}
+
+//Media Query Mixins
+@mixin mediaSm {
+    @media screen and (max-width: 500px) {
+        @content;
+    }
+}
+
+@mixin mediaMd {
+    @media screen and (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin mediaLg {
+    @media screen and (min-width: 769px) and (max-width: 1170px) {
+        @content;
+    }
+}
+
+@mixin mediaXl {
+    @media screen and (min-width: 1171px) {
+        @content;
+    }
+}
+
+
