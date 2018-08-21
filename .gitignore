@@ -1,6 +1,6 @@
 /.idea/
 /node_modules/
-/dist/
+/public/
 
 # Cache and logs (Symfony2)
 /app/cache/*

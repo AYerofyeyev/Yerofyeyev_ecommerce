@@ -1,11 +1,11 @@
 // Colors
 $white: #fff;
-$grey: #444;
+$grey: #f0f0f0;
 $yellow: #e1de99;
 $black: #000;
 
 //Color theme
-$backgroundColor: $yellow;
+$backgroundColor: $grey;
 $primaryTextColor: $white;
 $secondaryTextColor: $yellow;
 
@@ -15,6 +15,23 @@ $secondaryTextColor: $yellow;
 //$backgroundOpacity: .7;
 
 //Mixins
+@mixin ubuntu($style: normal) {
+    @if $style == normal {
+        font-family: Ubuntu;
+        font-weight: 400;
+    }
+
+    @if $style == heavy {
+        font-family: Ubuntu;
+        font-weight: 700;
+    }
+
+    @if $style == light {
+        font-family: Ubuntu;
+        font-weight: 300;
+    }
+}
+
 @mixin easeOut {
     transition: all .5s ease-out;
 }
