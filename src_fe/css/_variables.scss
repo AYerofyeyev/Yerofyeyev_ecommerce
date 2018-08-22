@@ -2,6 +2,8 @@
 $white: #fff;
 $grey: #f0f0f0;
 $yellow: #e1de99;
+$orange: #ff8f30;
+$red: #fb3e38;
 $black: #000;
 
 //Color theme
@@ -55,6 +57,24 @@ $secondaryTextColor: $yellow;
       }
     }
   }
+}
+
+@mixin placecolor($color: $black) {
+    &::-webkit-input-placeholder {
+        color: $color;
+    }
+
+    &:-moz-placeholder {
+        color: $color;
+    }
+
+    &::-moz-placeholder {
+        color: $color;
+    }
+
+    &:-ms-input-placeholder {
+        color: $color;
+    }
 }
 
 //Set Text Color

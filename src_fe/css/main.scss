@@ -28,6 +28,80 @@ body {
     overflow: hidden;
 }
 
+.container {
+    width: 1170px;
+    margin: 0 auto;
+}
+
+.header {
+    background: linear-gradient(to right, $red 0%, $orange 100%);
+}
+
+.header__top {
+    display: grid;
+    grid-template-areas:
+    'logo search menu'
+    ;
+    grid-template-columns: 25% 40% 35%;
+}
+
+.header__logo {
+    grid-area: logo;
+    margin: auto;
+
+    .logo__pic {
+        display: block;
+        max-width: 175px;
+        max-height: 55px;
+    }
+}
+
+.header__search {
+    grid-area: search;
+    //margin: 0;
+
+    .search {
+        position: relative;
+
+        .search__input {
+            width: 100%;
+            padding: 10px 40px 10px 35px;
+            background: rgba($white, .2);
+            border: none;
+            border-radius: 50px;
+            color: $white;
+            @include placecolor($white);
+            outline: none;
+        }
+
+        .search__submit {
+            position: absolute;
+            display: block;
+            top: calc(50% - 9px);
+            right: 18px;
+            height: 18px;
+            width: 18px;
+            background: url('../img/search.svg') 0 0 no-repeat;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+    }
+}
+
+.menu {
+    grid-area: menu;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.menu__item {
+    white-space: nowrap;
+}
+
+
 //Headings
 //h1,
 //h2,

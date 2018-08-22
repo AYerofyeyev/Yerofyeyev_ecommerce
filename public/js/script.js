@@ -130,6 +130,28 @@ eval("\nvar content = __webpack_require__(/*! !../../node_modules/mini-css-extra
 
 /***/ }),
 
+/***/ "./src_fe/img/logo.png":
+/*!*****************************!*\
+  !*** ./src_fe/img/logo.png ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"../img/logo.png\";\n\n//# sourceURL=webpack:///./src_fe/img/logo.png?");
+
+/***/ }),
+
+/***/ "./src_fe/img/search.svg":
+/*!*******************************!*\
+  !*** ./src_fe/img/search.svg ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"../img/search.svg\";\n\n//# sourceURL=webpack:///./src_fe/img/search.svg?");
+
+/***/ }),
+
 /***/ "./src_fe/js/index.js":
 /*!****************************!*\
   !*** ./src_fe/js/index.js ***!
@@ -138,7 +160,7 @@ eval("\nvar content = __webpack_require__(/*! !../../node_modules/mini-css-extra
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\n__webpack_require__(/*! ../css/main.scss */ \"./src_fe/css/main.scss\");\n\nconsole.log('script is connected');\n(function () {\n    //Select DOM elems\n\n    //Set initial state o Menu\n\n})();\n\n//# sourceURL=webpack:///./src_fe/js/index.js?");
+eval("\n\n__webpack_require__(/*! ../css/main.scss */ \"./src_fe/css/main.scss\");\n\n__webpack_require__(/*! ../img/logo.png */ \"./src_fe/img/logo.png\");\n\n__webpack_require__(/*! ../img/search.svg */ \"./src_fe/img/search.svg\");\n\nconsole.log('script is connected');\n(function () {\n    //Select DOM elems\n\n    //Set initial state o Menu\n\n})();\n\n//# sourceURL=webpack:///./src_fe/js/index.js?");
 
 /***/ })
 
