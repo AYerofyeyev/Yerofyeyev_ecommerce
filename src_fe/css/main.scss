@@ -1,6 +1,6 @@
 @import "reset.css";
 @import "variables";
-//@import "menu";
+@import "menu";
 
 
 * {
@@ -33,8 +33,15 @@ body {
     margin: 0 auto;
 }
 
+a {
+    color: setTextColor($backgroundColor);
+    text-decoration: none;
+}
+
+//Header
 .header {
     background: linear-gradient(to right, $red 0%, $orange 100%);
+    margin-bottom: 20px;
 }
 
 .header__top {
@@ -42,9 +49,10 @@ body {
     grid-template-areas:
     'logo search menu'
     ;
-    grid-template-columns: 25% 40% 35%;
+    grid-template-columns: 19% 40% 41%;
     padding-top: 10px;
     padding-bottom: 15px;
+    border-bottom: 1px solid rgba($white, .2);
 }
 
 .header__logo {
@@ -99,7 +107,7 @@ body {
 }
 
 .header__menu {
-    padding-top: 10px;
+    padding: 10px 0 0 20px;
 
     .menu {
         grid-area: menu;
@@ -116,18 +124,31 @@ body {
     .menu__link {
         display: block;
         padding: 5px 10px;
+        color: $primaryTextColor;
+        @include easeOut;
+
+        &:hover {
+            color: $secondaryTextColor;
+
+        }
     }
 
     .menu__link_iconed {
         position: relative;
         padding-right: 20px;
         padding-left: 50px;
-        border: 2px solid $grey-light;
+        border: 2px solid $secondaryTextColor;
         border-radius: 50px;
+        @include easeOut;
+
+        &:hover {
+            .menu__link-icon svg {
+                fill: $secondaryTextColor;
+            }
+        }
     }
 
     .menu__link-text {
-        color: $white;
         font-size: 1rem;
     }
 
@@ -138,7 +159,7 @@ body {
         bottom: 0;
         width: 20px;
 
-        .menu__icon-pic {
+        svg {
             position: absolute;
             display: block;
             max-width: 100%;
@@ -148,255 +169,156 @@ body {
             bottom: 0;
             left: 0;
             margin: auto;
+            fill: $primaryTextColor;
+            @include easeOut;
         }
     }
 }
 
-//Headings
-//h1,
-//h2,
-//h3 {
-//    font-weight: 400;
-//
-//    &.lg-heading {
-//        font-size: 6rem;
-//    }
-//
-//    &.sm-heading {
-//        margin-bottom: 2rem;
-//        padding: .2rem 1rem;
-//        background: rgba(lighten($backgroundColor, 2), .6);
-//        font-size: 1.5rem;
-//    }
-//}
-//
-//h3 {
-//    text-transform: uppercase;
-//}
+//Nav
+.nav__list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
 
-a {
-    color: setTextColor($backgroundColor);
-    text-decoration: none;
+    .nav__item {
+        white-space: nowrap;
+
+        &:nth-child(2)>.nav__link>.nav__icon {
+            width: 70px;
+            padding: 0;
+        }
+
+        &:nth-child(3)>.nav__link>.nav__icon {
+            width: 80px;
+            padding: 0;
+        }
+
+        .nav__link {
+            display: block;
+            padding: 0;
+
+            &:first-child {
+                padding-left: 0;
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
+
+            &:hover {
+                .nav__title {
+                    color: $secondaryTextColor;
+                }
+
+                .nav__icon svg {
+                    fill: $secondaryTextColor;
+                }
+            }
+
+            .nav__icon {
+                display: inline-block;
+                vertical-align: middle;
+                width: 50px;
+                padding: 15px 0;
+
+                svg {
+                    display: block;
+                    margin: auto;
+                    height: 100%;
+                    max-height: 100%;
+                    max-width: 100%;
+                    fill: $primaryTextColor;
+                    @include easeOut;
+                }
+            }
+
+            .nav__title {
+                font-size: 1rem;
+                color: $primaryTextColor;
+                text-transform: uppercase;
+                padding: 0;
+                @include easeOut;
+            }
+        }
+    }
 }
 
-//header {
-//    position: fixed;
-//    z-index: 2;
-//    width: 100%;
-//}
-//
-//.text-secondary {
-//    color: $secondaryTextColor;
-//}
-//
-//main {
-//    padding: 4rem 4rem 0;
-//    min-height: calc(100vh - 60px);
-//    height: 100%;
-//
-//    .icons li {
-//        display: inline-block;
-//
-//        a {
-//            padding: .4rem;
-//
-//            &:hover {
-//                color: $secondaryTextColor;
-//                @include easeOut;
-//            }
-//        }
-//    }
-//
-//    &#home {
-//        overflow: hidden;
-//
-//        h1 {
-//            margin-top: 20vh;
-//        }
-//    }
-//}
-//
-////About Page
-//.about-info {
-//    display: grid;
-//    grid-gap: 30px;
-//    grid-template-areas:
-//    'bioimage bio bio'
-//    'joblist joblist joblist'
-//    'download download download'
-//    ;
-//    grid-template-columns: repeat(3, 1fr);
-//
-//    .bio-image {
-//        grid-area: bioimage;
-//        margin: auto;
-//        border-radius: 50%;
-//        border: 3px solid $secondaryTextColor;
-//
-//        .portrait {
-//            height: 20vh;
-//            width: 20vh;
-//            background: url("../img/portrait_small.jpg") no-repeat;
-//            background-size: cover;
-//            border-radius: 50%;
-//            filter: grayscale(100%);
-//        }
-//    }
-//
-//    .bio {
-//        grid-area: bio;
-//        font-size: 1.5rem;
-//    }
-//
-//    .job-list {
-//        grid-area: joblist;
-//        display: grid;
-//        grid-gap: 30px;
-//        grid-template-areas: 'job1 job2 job2 job3';
-//        grid-template-columns: repeat(4, 1fr);
-//    }
-//
-//    .job-1 {
-//        grid-area: job1;
-//    }
-//
-//    .job-2 {
-//        grid-area: job2;
-//    }
-//
-//    .job-3 {
-//        grid-area: job3;
-//    }
-//
-//    .job {
-//        padding: 0.5rem;
-//        background: rgba(lighten($backgroundColor, 5), .9);
-//        border-bottom: 5px solid $secondaryTextColor;
-//    }
-//
-//    .download-button {
-//        grid-area: download;
-//        margin: auto;
-//        height: auto;
-//        width: auto;
-//        padding: 1rem 3rem;
-//        color: $primaryTextColor;
-//        background: $secondaryTextColor;
-//        border: 0;
-//        border-radius: 10px;
-//        outline: none;
-//        font-size: 2rem;
-//        cursor: pointer;
-//
-//        &:hover {
-//            background: lighten($secondaryTextColor, 8);
-//            @include easeOut;
-//        }
-//    }
-//}
-//
-//.popup {
-//    position: fixed;
-//    top: 50%;
-//    left: calc(50% - 200px);
-//    text-align: center;
-//    visibility: hidden;
-//
-//    &.show {
-//        visibility: visible;
-//    }
-//}
-//
-////Work/Projects
-//.projects {
-//    display: grid;
-//    grid-gap: .7rem;
-//    grid-template-columns: repeat(3, 1fr);
-//
-//    a {
-//        display: block;
-//    }
-//
-//    img {
-//        position: relative;
-//        width: 100%;
-//        border: 3px solid $primaryTextColor;
-//
-//        &:hover {
-//            opacity: .5;
-//            border-color: $secondaryTextColor;
-//            @include easeOut;
-//            cursor: zoom-in;
-//        }
-//    }
-//
-//    .bg-sample {
-//        position: absolute;
-//        @include easeOut;
-//
-//        &:hover img {
-//            opacity: 1;
-//            cursor: zoom-out;
-//        }
-//    }
-//
-//    .hide {
-//        display: none;
-//    }
-//}
-//
-////Contact Page
-//.boxes {
-//    display: flex;
-//    flex-wrap: wrap;
-//    justify-content: space-evenly;
-//    align-items: center;
-//
-//    div {
-//        font-size: 2rem;
-//        border: 3px solid $primaryTextColor;
-//        padding: 1.5rem 2.5rem;
-//        margin-bottom: 3rem;
-//        @include easeOut;
-//
-//        &:hover {
-//            padding: .5rem 1.5rem;
-//            background: $secondaryTextColor;
-//            color: setTextColor($secondaryTextColor);
-//            cursor: default;
-//
-//            span {
-//                color: setTextColor($secondaryTextColor);
-//            }
-//        }
-//    }
-//}
-//
-////Button Styles
-//.btn {
-//    display: block;
-//    padding: .5rem 1rem;
-//    border: none;
-//    margin-bottom: .3rem;
-//
-//    &:hover {
-//        background: $secondaryTextColor;
-//        color: setTextColor($secondaryTextColor);
-//    }
-//}
-//
-//.btn-dark {
-//    @extend .btn;
-//    background: darken($backgroundColor, 50);
-//    color: setTextColor($backgroundColor);
-//}
-//
-//.btn-light {
-//    @extend .btn;
-//    background: lighten($backgroundColor, 50);
-//    color: darken(setTextColor($backgroundColor), 80);
-//}
-//
+// Content
+.title {
+    margin-top: 0;
+    font-weight: normal;
+}
+
+.content__wrapper .container {
+    display: grid;
+    //grid-template-areas: 'aside content';
+    grid-template-columns: 15% 85%;
+    background: $white;
+
+    .products {
+        display: flex;
+        flex-direction: column;
+
+        .products__item {
+            display: grid;
+            grid-template-areas: 'slideshow description price';
+            grid-template-columns: 1fr 2fr 1fr;
+            margin-bottom: 20px;
+
+            .products__slideshow {
+                grid-area: slideshow;
+                padding-right: 20px;
+
+                .slideshow__display {
+                    width: 80px;
+                    margin: 0 auto;
+
+                    .slideshow__display-img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%;
+                        margin: auto;
+                    }
+                }
+
+                .slideshow__thumbs {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+
+                    .slideshow__thumbs-item {
+                        display: inline-block;
+
+                        .slideshow__thumbs-link {
+                            display: block;
+                            height: 3rem;
+
+                            img {
+                                display: block;
+                                max-width: 100%;
+                                max-height: 100%;
+                                margin: auto;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .products__description {
+                grid-area: description;
+            }
+
+            .products__price {
+                grid-area: price;
+            }
+        }
+    }
+}
+
+//Footer
 .footer {
     display: flex;
     justify-content: center;
@@ -408,8 +330,5 @@ a {
     //background: rgba(darken($backgroundColor, 10), .7);
     color: setTextColor($backgroundColor);
 }
-//
-//
-//
 //
 //@import "mobile";

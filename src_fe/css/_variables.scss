@@ -1,8 +1,10 @@
 // Colors
 $white: #fff;
-$grey-light: #ffaf6a;
 $grey: #f0f0f0;
+$grey-dark: #2e2e2e;
 $yellow: #e1de99;
+$yellow-dark: #ffc960;
+$orange-light: #ffaf6a;
 $orange: #ff8f30;
 $red: #fb3e38;
 $black: #000;
@@ -10,7 +12,7 @@ $black: #000;
 //Color theme
 $backgroundColor: $grey;
 $primaryTextColor: $white;
-$secondaryTextColor: $yellow;
+$secondaryTextColor: $orange-light;
 
 //Images
 //$showHomeImage: true;
@@ -112,4 +114,9 @@ $secondaryTextColor: $yellow;
     }
 }
 
-
+//Headers
+h1 {
+    @include ubuntu(light);
+    font-size: 1.5rem;
+    color: $grey-dark;
+}
