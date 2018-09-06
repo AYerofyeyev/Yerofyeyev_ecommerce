@@ -20,6 +20,7 @@
     <div class="wrapper">
         <header class="header">
             <div class="container">
+                <a name="top"></a>
                 <div class="header__top">
                     <div class="header__logo">
                         <a class="logo" href="#">
@@ -165,7 +166,7 @@
                 <aside class="sidebar">
                     <ul class="categories">
                         <li class="categories__item">
-                            <a href="#" class="categories__link">
+                            <a href="#" class="categories__link active">
                                 <span class="categories__icon">
                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve"><metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata><g><path d="M687.5,10h-375C269.1,10,234,45.1,234,88.5v823c0,43.4,35.1,78.5,78.5,78.5h375c43.4,0,78.5-35.1,78.5-78.5v-823C766,45.1,730.9,10,687.5,10z M458.4,81.9h88c5.3,0,9.5,4.3,9.5,9.5c0,5.3-4.3,9.5-9.5,9.5h-88c-5.3,0-9.5-4.3-9.5-9.5C448.9,86.1,453.1,81.9,458.4,81.9z M502.4,944.9c-21,0-38.1-17-38.1-38.1c0-21,17-38.1,38.1-38.1c21,0,38.1,17,38.1,38.1C540.4,927.9,523.4,944.9,502.4,944.9z M706.3,827.7H293.7V172.3h412.7V827.7z"/></g></svg>
                                 </span>
@@ -173,6 +174,9 @@
                                     Мобильные телефоны
                                 </span>
                             </a>
+                            <div class="categories__count">
+                                85
+                            </div>
                         </li>
                         <li class="categories__item">
                             <a href="#" class="categories__link">
@@ -183,9 +187,14 @@
                                     Планшеты
                                 </span>
                             </a>
+                            <div class="categories__count">
+                                70
+                            </div>
                         </li>
-
                     </ul>
+                    <a class="to-top" href="#top">
+                        <i class="far fa-arrow-alt-circle-up fa-2x"></i>
+                    </a>
                 </aside>
                 <main class="content">
                     <ul class="products">
@@ -232,7 +241,14 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="products__price"></div>
+                            <div class="products__price">
+                                <div class="product__price-amount">
+                                    14 999 грн.
+                                </div>
+                                <a href="#" class="products__buy">
+                                    Купить
+                                </a>
+                            </div>
                         </li>
                         <li class="products__item">
                             <div class="products__slideshow">
@@ -277,7 +293,14 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="products__price"></div>
+                            <div class="products__price">
+                                <div class="product__price-amount">
+                                    14 999 грн.
+                                </div>
+                                <a href="#" class="products__buy">
+                                    Купить
+                                </a>
+                            </div>
                         </li>
                         <li class="products__item">
                             <div class="products__slideshow">
@@ -322,10 +345,40 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="products__price"></div>
+                            <div class="products__price">
+                                <div class="product__price-amount">
+                                    14 999 грн.
+                                </div>
+                                <a href="#" class="products__buy">
+                                    Купить
+                                </a>
+                            </div>
                         </li>
                     </ul>
                 </main>
+            </div>
+        </section>
+        <section class="pagination">
+            <div class="container">
+                <a href="#" class="pagination__control pagination__control-left"></a>
+                <ul class="pagination__list">
+                    <li class="pagination__item">
+                        <a href="" class="pagination__link active">1</a>
+                    </li>
+                    <li class="pagination__item">
+                        <a href="" class="pagination__link">2</a>
+                    </li>
+                    <li class="pagination__item">
+                        <a href="" class="pagination__link">3</a>
+                    </li>
+                    <li class="pagination__item">
+                        <a href="" class="pagination__link">4</a>
+                    </li>
+                    <li class="pagination__item">
+                        <a href="" class="pagination__link">...</a>
+                    </li>
+                </ul>
+                <a href="#" class="pagination__control pagination__control-right"></a>
             </div>
         </section>
     </div>

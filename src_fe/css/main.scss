@@ -185,19 +185,32 @@ a {
 
     .nav__item {
         white-space: nowrap;
+        padding: 0 20px;
+        height: 100%;
+        border-right: 1px solid rgba($white, .2);
 
-        &:nth-child(2)>.nav__link>.nav__icon {
-            width: 70px;
-            padding: 0;
+        &:first-child {
+            padding-left: 0;
         }
 
-        &:nth-child(3)>.nav__link>.nav__icon {
-            width: 80px;
-            padding: 0;
+        //&:nth-child(2)>.nav__link>.nav__icon {
+        //    width: 35px;
+        //    padding: 0;
+        //}
+
+        //&:nth-child(3)>.nav__link>.nav__icon {
+        //    width: 40px;
+        //    padding: 0;
+        //}
+
+        &:last-child {
+            padding-right: 0;
+            border: none;
         }
 
         .nav__link {
             display: block;
+            height: 100%;
             padding: 0;
 
             &:first-child {
@@ -221,7 +234,7 @@ a {
             .nav__icon {
                 display: inline-block;
                 vertical-align: middle;
-                width: 50px;
+                width: 30px;
                 padding: 15px 0;
 
                 svg {
@@ -248,71 +261,250 @@ a {
 
 // Content
 .title {
-    margin-top: 0;
+    margin: 0 0 20px 0;
     font-weight: normal;
 }
 
 .content__wrapper .container {
     display: grid;
     //grid-template-areas: 'aside content';
-    grid-template-columns: 15% 85%;
+    grid-template-columns: 25% 75%;
     background: $white;
 
-    .products {
-        display: flex;
-        flex-direction: column;
+    .sidebar {
+        position: relative;
 
-        .products__item {
-            display: grid;
-            grid-template-areas: 'slideshow description price';
-            grid-template-columns: 1fr 2fr 1fr;
-            margin-bottom: 20px;
+        .categories {
+            .categories__item {
+                position: relative;
+                border-bottom: 1px solid $backgroundColor;
 
-            .products__slideshow {
-                grid-area: slideshow;
-                padding-right: 20px;
+                .categories__link {
+                    display: block;
+                    color: $grey-dark;
+                    padding: 20px 50px 20px 20px;
+                    @include easeOut;
 
-                .slideshow__display {
-                    width: 80px;
-                    margin: 0 auto;
+                    .categories__icon {
+                        display: inline-block;
+                        vertical-align: middle;
+                        width: 40px;
 
-                    .slideshow__display-img {
-                        display: block;
-                        max-width: 100%;
-                        max-height: 100%;
-                        margin: auto;
+                        svg {
+                            display: block;
+                            margin: auto;
+                            height: 100%;
+                            max-height: 100%;
+                            max-width: 100%;
+                            fill: $grey-dark;
+                            @include easeOut;
+                        }
+                    }
+
+                    &:hover {
+                        color: $secondaryTextColor;
+
+                        .categories__icon svg {
+                            fill: $secondaryTextColor;
+                        }
                     }
                 }
 
-                .slideshow__thumbs {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
+                .active {
+                    color: $orange;
 
-                    .slideshow__thumbs-item {
-                        display: inline-block;
+                    &>.categories__icon>svg {
+                        fill: $orange;
+                    }
+                }
 
-                        .slideshow__thumbs-link {
+                .categories__count {
+                    position: absolute;
+                    right: 20px;
+                    font-size: 1rem;
+                    color: darken($grey, 40);
+                    top: 50%;
+                    margin-top: -13px;
+                }
+            }
+        }
+
+        .to-top {
+            display: none;
+        }
+    }
+
+    .content {
+        .products {
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid $backgroundColor;
+
+            .products__item {
+                display: grid;
+                grid-template-areas: 'slideshow description price';
+                grid-template-columns: 30% 45% 25%;
+                padding: 20px 20px 40px 20px;
+
+                .products__slideshow {
+                    grid-area: slideshow;
+                    padding-right: 20px;
+
+                    .slideshow__display {
+                        position: relative;
+                        height: 235px;
+                        margin: 0 auto 10px auto;
+
+                        .slideshow__display-img {
+                            position: absolute;
                             display: block;
-                            height: 3rem;
+                            top: 0;
+                            right: 0;
+                            bottom: 0;
+                            left: 0;
+                            max-width: 95%;
+                            max-height: 95%;
+                            margin: auto;
+                        }
+                    }
 
-                            img {
+                    .slideshow__thumbs {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+
+                        .slideshow__thumbs-item {
+                            display: block;
+                            width: 25%;
+
+                            .slideshow__thumbs-link {
+                                position: relative;
                                 display: block;
-                                max-width: 100%;
-                                max-height: 100%;
-                                margin: auto;
+                                height: 54px;
+
+                                img {
+                                    display: block;
+                                    position: absolute;
+                                    top: 0;
+                                    right: 0;
+                                    bottom: 0;
+                                    left: 0;
+                                    max-width: 100%;
+                                    max-height: 100%;
+                                    margin: auto;
+                                    @include easeOut;
+                                }
+
+                                &:hover img {
+                                    transform: scale(1.1);
+                                }
                             }
                         }
                     }
                 }
+
+                .products__description {
+                    grid-area: description;
+                    padding: 20px;
+                    border-left: 1px solid $backgroundColor;
+
+                    .products__description-title {
+                        margin: 0 auto 20px auto;
+                        font-weight: normal;
+                        font-size: 1.5rem;
+                        color: $grey-dark;
+                        text-transform: uppercase;
+                    }
+
+                    .products__description-content {
+                        font-size: 1rem;
+                        color: $grey-dark;
+
+                        li {
+                            margin-bottom: 10px;
+                        }
+                    }
+                }
+
+                .products__price {
+                    grid-area: price;
+                    padding: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    border: 1px solid $backgroundColor;
+
+                    .product__price-amount {
+                        @include ubuntu(heavy);
+                        font-size: 1.5rem;
+                        color: $grey-dark;
+                    }
+
+                    .products__buy {
+                        display: block;
+                        padding: 10px 40px;
+                        background: $orange;
+                        color: $primaryTextColor;
+                        border-radius: 50px;
+                        text-align: center;
+                        @include easeOut;
+
+                        &:hover {
+                            background: $secondaryTextColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Pagination
+.pagination {
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+        background: $white;
+
+        .pagination__control {
+            display: block;
+            height: 15px;
+            width: 15px;
+            border-top: 1px solid $orange;
+            border-left: 1px solid $orange;
+            transform: rotate(-45deg);
+            @include easeOut;
+
+            &-right {
+                transform: rotate(135deg);
             }
 
-            .products__description {
-                grid-area: description;
+            &:hover {
+                border-top: 1px solid $secondaryTextColor;
+                border-left: 1px solid $secondaryTextColor;
+            }
+        }
+
+        .pagination__list {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .pagination__link {
+                padding: 5px 10px;
+                color: $grey-dark;
+                @include easeOut;
+
+                &:hover {
+                    color: $secondaryTextColor;
+                }
             }
 
-            .products__price {
-                grid-area: price;
+            .active {
+                color: $orange;
             }
         }
     }
