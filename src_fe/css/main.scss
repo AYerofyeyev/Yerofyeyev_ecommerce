@@ -488,13 +488,20 @@ a {
             }
         }
 
+        .disabled {
+            border-top: 1px solid $backgroundColor;
+            border-left: 1px solid $backgroundColor;
+        }
+
         .pagination__list {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            padding: 0 20px;
 
             .pagination__link {
-                padding: 5px 10px;
+                display: block;
+                padding: 10px 20px;
                 color: $grey-dark;
                 @include easeOut;
 
