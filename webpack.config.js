@@ -1,10 +1,10 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: { main: './src_fe/js/index.js' },
     output: {
-        path: path.resolve(__dirname, 'public'),
+        path: path.resolve(__dirname, './src/AppBundle/Resources/public'),
         filename: 'js/script.js'
     },
     module: {
@@ -86,23 +86,24 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin(
             {filename: 'css/style.css'}
-        ),
-        new HtmlWebpackPlugin({
-            inject: false,
-            hash: true,
-            filename: 'index.html',
-            template: './src_fe/index.html',
-            chunks: ['main'],
-            minify: {
-                removeComments: true,
-                collapseWhitespace: true,
-                conservativeCollapse: true,
-                preserveLineBreaks: true,
-                removeRedundantAttributes: true,
-                removeScriptTypeAttributes: true,
-                removeStyleLinkTypeAttributes: true
-            }
-        })
+        )
+        // ,
+        // new HtmlWebpackPlugin({
+        //     inject: false,
+        //     hash: true,
+        //     filename: 'index.html',
+        //     template: './src_fe/index.html',
+        //     chunks: ['main'],
+        //     minify: {
+        //         removeComments: true,
+        //         collapseWhitespace: true,
+        //         conservativeCollapse: true,
+        //         preserveLineBreaks: true,
+        //         removeRedundantAttributes: true,
+        //         removeScriptTypeAttributes: true,
+        //         removeStyleLinkTypeAttributes: true
+        //     }
+        // })
         // ,new HtmlWebpackPlugin({
         //     inject: false,
         //     hash: true,
