@@ -60,11 +60,11 @@
             </aside>
             <main class="content">
                 <ul class="products">
-                    {% for key, product in products %}
+                    {% for product in products %}
                     <li class="products__item">
                         <div class="products__slideshow">
                             <div class="slideshow__display">
-                                <img src="{{ asset('bundles/app/img/120393-1.jpg') }}" alt="{{ product }}" class="slideshow__display-img">
+                                <img src="{{ asset('bundles/app/img/120393-1.jpg') }}" alt="{{ product.name }}" class="slideshow__display-img">
                             </div>
                             <ul class="slideshow__thumbs">
                                 <li class="slideshow__thumbs-item">
@@ -90,26 +90,18 @@
                             </ul>
                         </div>
                         <div class="products__description">
-                            <a href={{ path('mobile_item', {id: product}) }}>
+                            <a href="{{ path('mobile_item', {id: product.id}) }}">
                             <h2 class="products__description-title">
-                                oneplus 6
+                                {{ product.name }}
                             </h2>
                             </a>
                             <div class="products__description-content">
-                                <ul>
-                                    <li> код товара: {{ product }};</li>
-                                    <li>Диагональ экрана: 6.28";</li>
-                                    <li>Разрешение экрана: 2280x1080;</li>
-                                    <li>Камера: 16 Мп + 20 Мп;</li>
-                                    <li>Количество ядер: 8;</li>
-                                    <li>Оперативная память: 6 Гб;</li>
-                                    <li>Внутренняя память: 64 Гб;</li>
-                                </ul>
+                                {{ product.specifications }}
                             </div>
                         </div>
                         <div class="products__price">
                             <div class="product__price-amount">
-                                14 999 грн.
+                                {{ product.price }} грн.
                             </div>
                             <a href="#" class="products__buy">
                                 Купить

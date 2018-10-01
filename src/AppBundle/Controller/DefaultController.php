@@ -31,10 +31,11 @@ class DefaultController extends Controller
      */
     public function mobileAction()
     {
-        $products = [
-            1 => 120393,
-            120394
-        ];
+        $products = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Goods')
+            ->findAll()
+        ;
         return ['products' => $products];
     }
 
