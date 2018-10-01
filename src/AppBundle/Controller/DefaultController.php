@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class DefaultController extends Controller
 {
     /**
@@ -61,12 +62,33 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //Email message
+            $transport = (new \Swift_SmtpTransport('mail.nlg.kiev.ua', 587))
+                ->setUsername('a.yerofeyev@nlg.kiev.ua')
+                ->setPassword('Ekjhvb9657');
+            $mailer = new \Swift_Mailer($transport);
+
+            $message = (new \Swift_Message('Site Feedback'))
+                ->setFrom(['a.yerofeyev@nlg.kiev.ua' => 'Feedback'])
+                ->setTo('a.yerofeyev@nlg.kiev.ua')
+                ->setBody( 'From: ' . $feedback->getEmail()
+                    . PHP_EOL
+                    . 'With IP address: ' . $feedback->getIpAddress()
+                    . PHP_EOL
+                    . 'Sent: ' . $feedback->getCreatedAt()->format('d/m/Y')
+                    . PHP_EOL
+                    . $feedback->getMessage());
+
+            $result = $mailer->send($message);
+
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($feedback);
             $em->flush();
 
             $this->addFlash('success', 'Message sent.');
+
+
             return $this->redirectToRoute('feedback');
         }
 
