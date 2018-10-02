@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Feedback;
+use AppBundle\Entity\Goods;
 use AppBundle\Form\FeedbackType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -40,14 +41,11 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="mobile_item", requirements={"id": "[0-9]+"})
+     * @Route("/{id}", name="show_item", requirements={"id": "[0-9]+"})
      */
-    public function showAction($id)
+    public function showAction(Goods $goods)
     {
-        $products = [
-            1 => $id
-        ];
-
+        $products = [1 => $goods];
         return $this->render('@App/Default/mobile.html.twig', ['products' => $products]);
     }
 
