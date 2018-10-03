@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class GoodsRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findSorted()
+    {
+        $this
+            ->createQueryBuilder('goods')
+            ->addOrderBy('book.price', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

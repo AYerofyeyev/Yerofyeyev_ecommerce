@@ -35,7 +35,21 @@ class DefaultController extends Controller
         $products = $this
             ->getDoctrine()
             ->getRepository('AppBundle:Goods')
-            ->findAll()
+            ->findBy(['category' => 1])
+        ;
+        return ['products' => $products];
+    }
+
+    /**
+     * @Route("/tablet", name="tablet")
+     * @Template()
+     */
+    public function tabletAction()
+    {
+        $products = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Goods')
+            ->findBy(['category' => 2])
         ;
         return ['products' => $products];
     }
@@ -62,11 +76,6 @@ class DefaultController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             //Email message
-            $transport = (new \Swift_SmtpTransport('mail.nlg.kiev.ua', 587))
-                ->setUsername('a.yerofeyev@nlg.kiev.ua')
-                ->setPassword('Ekjhvb9657');
-            $mailer = new \Swift_Mailer($transport);
-
             $message = (new \Swift_Message('Site Feedback'))
                 ->setFrom(['a.yerofeyev@nlg.kiev.ua' => 'Feedback'])
                 ->setTo('a.yerofeyev@nlg.kiev.ua')
@@ -78,14 +87,14 @@ class DefaultController extends Controller
                     . PHP_EOL
                     . $feedback->getMessage());
 
-            $result = $mailer->send($message);
+            $result = $this->get('mailer')->send($message);
 
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($feedback);
             $em->flush();
 
-            $this->addFlash('success', 'Message sent.');
+            $this->addFlash('success', $result . ' message(s) sent.');
 
 
             return $this->redirectToRoute('feedback');
