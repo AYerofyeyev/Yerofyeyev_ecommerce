@@ -41,9 +41,16 @@
                             </a>
                         </li>
                         <li class="menu__item">
-                            <span>Имя</span>
-                            <span>Пароль</span>
-                            <a class="" href="{{ path('user_homepage') }}"><i class="fas fa-sign-in-alt"></i></a>
+                            <a class="menu__link menu__link_iconed" href="{{ path('user_homepage') }}">
+                                <i class="fas fa-sign-in-alt"></i>
+                                <span>Вход для Пользователя</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menu__link menu__link_iconed" href="{{ path('admin_homepage') }}">
+                                <i class="fas fa-sign-in-alt"></i>
+                                <span>Вход для Администратора</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
