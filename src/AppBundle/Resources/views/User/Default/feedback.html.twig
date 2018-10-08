@@ -1,0 +1,47 @@
+{% extends "@App/layout.html.twig" %}
+
+{% block section %}
+<section class="mainmenu">
+    <div class="container">
+        <ul class="mainmenu__list">
+            <li class="mainmenu__item">
+                <a href="{{ path('homepage') }}" class="mainmenu__link">
+                    Главная
+                </a>
+            </li>
+            <li class="mainmenu__item">
+                <a href="{{ path('feedback') }}" class="mainmenu__link">
+                    Обратная связь
+                </a>
+            </li>
+        </ul>
+    </div>
+</section>
+<section class="section__title">
+    <div class="container">
+        <h1 class="title">
+            Обратная связь
+        </h1>
+    </div>
+</section>
+<section class="content__wrapper">
+    <div class="container">
+        <aside class="sidebar">
+        </aside>
+        <main class="content">
+            {{ form_start(feedback_form) }}
+                {{ form_row(feedback_form.email, {'label': 'Эл. почта:'}) }}
+                {{ form_row(feedback_form.message, {'label': 'Сообщение:'} ) }}
+                {{ form_row(feedback_form.submit, {'label': 'Отправить'}) }}
+            {{ form_end(feedback_form) }}
+        </main>
+    </div>
+</section>
+<section class="pagination">
+    <div class="container">
+        {% for flash in app.session.getFlashBag().get('success') %}
+            {{ flash }}
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

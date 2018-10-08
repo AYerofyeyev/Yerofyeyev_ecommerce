@@ -1,0 +1,67 @@
+{% extends '@App/user_layout.html.twig' %}
+{% block section %}
+    <section class="mainmenu">
+        <div class="container">
+            <ul class="mainmenu__list">
+                <li class="mainmenu__item">
+                    <a href="{{ path('logout') }}" class="mainmenu__link">
+                        Главная
+                    </a>
+                </li>
+                <li class="mainmenu__item">
+                    <a href="{{ path('') }}" class="mainmenu__link">
+                        Создать новую категорию
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="section__title">
+        <div class="container">
+            <h1 class="title">
+                Создать новую категорию
+            </h1>
+        </div>
+    </section>
+    <section class="content__wrapper">
+        <div class="container">
+            <aside class="sidebar">
+                <h2>Категории</h2>
+                <ul class="categories">
+                    {% for category in categories %}
+                    <li class="categories__item">
+                        <a href="" class="categories__link active">
+                            <span class="categories__icon">
+
+                            </span>
+                            <span class="categories__text">
+
+                            </span>
+                        </a>
+                        <div class="categories__count">
+
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <a class="to-top" href="#top">
+                    <i class="far fa-arrow-alt-circle-up fa-2x"></i>
+                </a>
+            </aside>
+            <main class="content">
+
+            </main>
+        </div>
+    </section>
+    <section class="pagination">
+        <div class="container">
+            <a href="#" class="pagination__control pagination__control-left disabled"></a>
+            <ul class="pagination__list">
+                <li class="pagination__item">
+                    <a href="" class="pagination__link active">1</a>
+                </li>
+            </ul>
+            <a href="#" class="pagination__control pagination__control-right"></a>
+        </div>
+    </section>
+{% endblock %}

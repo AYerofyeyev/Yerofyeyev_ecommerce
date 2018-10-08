@@ -21,22 +21,27 @@
     <section class="content__wrapper">
         <div class="container">
             <aside class="sidebar">
+                <h2>Категории</h2>
+                <a class="" href="{{ path('admin_category', {id: 0}) }}">Новая категория</a>
                 <ul class="categories">
-                    {#{% for category in categories %}#}
+                    {% for category in categories %}
                     <li class="categories__item">
                         {#<a href="{{ path('mobile') }}" class="categories__link active">#}
                             <span class="categories__icon">
                             </span>
                             <span class="categories__text">
+                                {{ category.name }}
                             </span>
                         {#</a>#}
                         <div class="categories__count">
                         </div>
                     </li>
-                    {#{% endfor %}#}
+                    {% endfor %}
                 </ul>
             </aside>
             <main class="content">
+                <h2>Товары</h2>
+                {#<a class="" href="{{ path('admin_create_goods') }}">Новый товар</a>#}
                 <table class="products">
                     <tr>
                         <th>Категория</th>
@@ -44,16 +49,20 @@
                         <th>Название</th>
                         <th>Характеристики</th>
                         <th>Цена</th>
+                        <th></th>
+                        <th></th>
                     </tr>
-                    {#{% for product in products %}#}
-                        <tr class="products__item">
-                            {#<td>{{ product.category_id }}</td>#}
-                            {#<td>{{ product.id }}</td>#}
-                            {#<td>{{ product.name }}</td>#}
-                            {#<td>{{ product.specifications }}</td>#}
-                            {#<td>{{ product.price }}</td>#}
+                    {% for product in products %}
+                        <tr>
+                            <td>{{ product.category.name }}</td>
+                            <td>{{ product.id }}</td>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.specifications }}</td>
+                            <td>{{ product.price }}</td>
+                            <td><a class="" href="">Редактировать</a></td>
+                            <td><a class="" href="">Удалить</a></td>
                         </tr>
-                    {#{% endfor %}#}
+                    {% endfor %}
                 </table>
             </main>
         </div>

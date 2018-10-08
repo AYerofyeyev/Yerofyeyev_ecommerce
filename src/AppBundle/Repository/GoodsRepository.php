@@ -14,7 +14,7 @@ class GoodsRepository extends \Doctrine\ORM\EntityRepository
     {
         $this
             ->createQueryBuilder('goods')
-            ->addOrderBy('book.price', 'ASC')
+            ->addOrderBy('goods.price', 'ASC')
             ->getQuery()
             ->getResult()
         ;
