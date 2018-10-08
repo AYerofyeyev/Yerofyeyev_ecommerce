@@ -4,7 +4,7 @@
         <div class="container">
             <ul class="mainmenu__list">
                 <li class="mainmenu__item">
-                    <a href="{{ path('logout') }}" class="mainmenu__link">
+                    <a href="{{ path('admin_homepage') }}" class="mainmenu__link">
                         Главная
                     </a>
                 </li>
@@ -41,7 +41,7 @@
             </aside>
             <main class="content">
                 <h2>Товары</h2>
-                {#<a class="" href="{{ path('admin_create_goods') }}">Новый товар</a>#}
+                <a class="" href="{{ path('admin_goods', {id: 0}) }}">Новый товар</a>
                 <table class="products">
                     <tr>
                         <th>Категория</th>
@@ -59,8 +59,8 @@
                             <td>{{ product.name }}</td>
                             <td>{{ product.specifications }}</td>
                             <td>{{ product.price }}</td>
-                            <td><a class="" href="">Редактировать</a></td>
-                            <td><a class="" href="">Удалить</a></td>
+                            <td><a class="" href="{{ path('admin_goods', {id: product.id}) }}">Редактировать</a></td>
+                            <td><a class="" href="#">Удалить</a></td>
                         </tr>
                     {% endfor %}
                 </table>

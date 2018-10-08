@@ -7,6 +7,7 @@ use AppBundle\Entity\Goods;
 use AppBundle\Entity\Category;
 use AppBundle\Form\FeedbackType;
 use AppBundle\Form\CategoryType;
+use AppBundle\Form\GoodsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,7 +59,7 @@ class DefaultController extends Controller
             $category = $this
                 ->getDoctrine()
                 ->getRepository('AppBundle:Category')
-                ->findById($id)[0]
+                ->findOneById($id)
             ;
         }
 
@@ -80,18 +81,38 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/goods/{id}", name="admin_goods")
+     * @Route("/goods/{id}", name="admin_goods", requirements={"id": "[0-9]+"})
      * @Template()
      */
-//    public function createGoodsAction()
-//    {
-//        $products = $this
-//            ->getDoctrine()
-//            ->getRepository('AppBundle:Goods')
-//            ->findBy(['category' => 2])
-//        ;
-//        return ['products' => $products];
-//    }
+    public function goodsAction($id, Request $request)
+    {
+        if (!$id) {
+            $product = new Goods();
+        } else {
+            $product = $this
+                ->getDoctrine()
+                ->getRepository('AppBundle:Goods')
+                ->findOneById($id)
+            ;
+        }
+
+        $form = $this->createForm(GoodsType::class, $product);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($product);
+            $em->flush();
+
+            $this->addFlash('success', 'Product has been added.');
+
+            return $this->redirectToRoute('admin_goods', ['id' => 0]);
+        }
+
+
+        return ['product' => $product, 'goods_form' => $form->createView()];
+    }
 
     /**
      * @Route("/feedback", name="admin_feedback")

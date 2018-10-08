@@ -24,7 +24,7 @@ class Feedback
 
     /**
      * @var string
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Please, type in your email for info.")
      * @Assert\Email()
      * @ORM\Column(name="email", type="string", length=60)
      */

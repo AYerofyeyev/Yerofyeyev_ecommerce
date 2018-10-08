@@ -4,13 +4,13 @@
         <div class="container">
             <ul class="mainmenu__list">
                 <li class="mainmenu__item">
-                    <a href="{{ path('logout') }}" class="mainmenu__link">
+                    <a href="{{ path('admin_homepage') }}" class="mainmenu__link">
                         Главная
                     </a>
                 </li>
                 <li class="mainmenu__item">
-                    <a href="{{ path('') }}" class="mainmenu__link">
-                        Создать новую категорию
+                    <a href="{{ path('admin_goods', {id: 0}) }}" class="mainmenu__link">
+                        Товар
                     </a>
                 </li>
             </ul>
@@ -18,38 +18,38 @@
     </section>
     <section class="section__title">
         <div class="container">
-            <h1 class="title">
-                Создать новую категорию
-            </h1>
+            <a class="" href="{{ path('admin_goods', {id: 0}) }}">
+                <h1 class="title">
+                    Новый товар
+                </h1>
+            </a>
         </div>
     </section>
     <section class="content__wrapper">
         <div class="container">
             <aside class="sidebar">
-                <h2>Категории</h2>
+                <h2>Текущий товар</h2>
                 <ul class="categories">
-                    {% for category in categories %}
                     <li class="categories__item">
                         <a href="" class="categories__link active">
                             <span class="categories__icon">
 
                             </span>
                             <span class="categories__text">
-
+                                {{ product.name }}
                             </span>
                         </a>
                         <div class="categories__count">
-
+                            {{ product.price }}
                         </div>
                     </li>
-                    {% endfor %}
                 </ul>
                 <a class="to-top" href="#top">
                     <i class="far fa-arrow-alt-circle-up fa-2x"></i>
                 </a>
             </aside>
             <main class="content">
-
+                {{ form(goods_form) }}
             </main>
         </div>
     </section>
