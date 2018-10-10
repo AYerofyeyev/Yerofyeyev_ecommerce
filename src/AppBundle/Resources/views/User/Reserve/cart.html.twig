@@ -5,9 +5,8 @@
     {% if (cart) %}
     <ul>
     {% for product in cart.bulk %}
-        <i>{{ product }}</i>
-        {#<li>{{ product.id }}</li>#}
-        {#<li>{{ product.count }}</li>#}
+        <li>{{ product.id }}</li>
+        <li>{{ product.count }}</li>
         {% endfor %}
     </ul>
     {% endif %}

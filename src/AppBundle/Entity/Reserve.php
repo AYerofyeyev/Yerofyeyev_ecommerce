@@ -24,7 +24,7 @@ class Reserve
     /**
      * @var array
      *
-     * @ORM\Column(name="bulk", type="simple_array", nullable=true)
+     * @ORM\Column(name="bulk", type="json_array")
      */
     private $bulk;
 

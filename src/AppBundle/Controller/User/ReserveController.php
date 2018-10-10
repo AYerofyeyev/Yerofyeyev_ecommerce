@@ -69,7 +69,7 @@ class ReserveController extends Controller
             $order = [];
         }
         array_push($order,
-            $id
+            ['id' => $id, 'count' => 1]
         );
         $session->get('reserve')->setBulk($order);
 
@@ -84,8 +84,9 @@ class ReserveController extends Controller
     public function saveAction(SessionInterface $session)
     {
         $em = $this->getDoctrine()->getManager();
-        dump($session->get('reserve'));
+
         $em->merge($session->get('reserve'));
+
         $em->flush();
 
         $this->addFlash('success', 'Заказ сохранен.');
