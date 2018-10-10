@@ -28,6 +28,12 @@ class Reserve
      */
     private $bulk;
 
+    /**
+     * @var string
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="reserve")
+     */
+    private $user;
+
 
     /**
      * Get id
@@ -61,6 +67,30 @@ class Reserve
     public function getBulk()
     {
         return $this->bulk;
+    }
+
+    /**
+     * Set user
+     *
+     * @param string $user
+     *
+     * @return Reserve
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
 

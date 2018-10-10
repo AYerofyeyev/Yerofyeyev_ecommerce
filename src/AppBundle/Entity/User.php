@@ -51,9 +51,17 @@ class User implements UserInterface, \Serializable
 
     public function __construct()
     {
+        $this->reserve = new ArrayCollection();
+
         $this->isActive = true;
+
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function getUsername()
@@ -110,4 +118,11 @@ class User implements UserInterface, \Serializable
             // $this->salt
             ) = unserialize($serialized, array('allowed_classes' => false));
     }
+
+    /**
+     * @var Reserve[]
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reserve", mappedBy="user")
+     */
+    private $reserve;
 }

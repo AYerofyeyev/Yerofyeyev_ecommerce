@@ -5,8 +5,11 @@
     {% if (cart) %}
     <ul>
     {% for product in cart.bulk %}
-        <li>{{ product }}</li>
+        <i>{{ product }}</i>
+        {#<li>{{ product.id }}</li>#}
+        {#<li>{{ product.count }}</li>#}
         {% endfor %}
     </ul>
     {% endif %}
+    <a class="" href="{{ path('user_save_order') }}">Оформить заказ</a>
 {% endblock %}

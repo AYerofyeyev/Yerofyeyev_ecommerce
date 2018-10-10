@@ -13,7 +13,6 @@ use AppBundle\Entity\Goods;
 use AppBundle\Entity\Reserve;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
@@ -33,18 +32,23 @@ class ReserveController extends Controller
      */
     public function ordersAction(Security $security)
     {
-
+        $orders = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Reserve')
+            ->findBy(['user' => $security->getUser()->getId()])
+        ;
+        dump($orders); dump($security->getUser()->getId());
         return ['username' => $security->getUser()->getUsername()];
     }
 
     /**
      * @param Security $security
-     * @param Session $session
+     * @param SessionInterface $session
      * @return array
      * @Route("/cart", name="user_cart")
      * @Template()
      */
-    public function cartAction(Security $security, Session $session)
+    public function cartAction(Security $security, SessionInterface $session)
     {
         return ['username' => $security->getUser()->getUsername(), 'cart' => $session->get('reserve')];
     }
@@ -52,10 +56,11 @@ class ReserveController extends Controller
     /**
      * @Route("/add{id}", name="user_add_to_cart")
      */
-    public function addAction($id, SessionInterface $session)
+    public function addAction($id, SessionInterface $session, Security $security)
     {
         if(!$session->get('reserve')) {
             $reserve = new Reserve();
+            $reserve->setUser($security->getUser());
             $session->set('reserve', $reserve);
         }
 
@@ -63,12 +68,28 @@ class ReserveController extends Controller
         if (!$order) {
             $order = [];
         }
-        array_push(
-            $order,
+        array_push($order,
             $id
         );
         $session->get('reserve')->setBulk($order);
 
         return $this->redirectToRoute('user_cart');
+    }
+
+    /**
+     * @param SessionInterface $session
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/save", name="user_save_order")
+     */
+    public function saveAction(SessionInterface $session)
+    {
+        $em = $this->getDoctrine()->getManager();
+        dump($session->get('reserve'));
+        $em->merge($session->get('reserve'));
+        $em->flush();
+
+        $this->addFlash('success', 'Заказ сохранен.');
+
+        return $this->redirectToRoute('user_orders');
     }
 }
