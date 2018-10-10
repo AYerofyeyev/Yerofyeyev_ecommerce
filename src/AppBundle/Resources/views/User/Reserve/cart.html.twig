@@ -1,0 +1,12 @@
+{% extends '@App/user_layout.html.twig' %}
+
+{% block section %}
+    Корзина
+    {% if (cart) %}
+    <ul>
+    {% for product in cart.bulk %}
+        <li>{{ product }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endblock %}

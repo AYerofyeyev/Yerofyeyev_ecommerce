@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * Class DefaultController
@@ -21,23 +22,24 @@ class DefaultController extends Controller
      * @Route("/", name="user_homepage")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Security $security)
     {
+        return ['username' => $security->getUser()->getUsername()];
     }
 
     /**
      * @Route("/mobile", name="user_mobile")
      * @Template()
      */
-//    public function mobileAction()
-//    {
-//        $products = $this
-//            ->getDoctrine()
-//            ->getRepository('AppBundle:Goods')
-//            ->findBy(['category' => 1])
-//        ;
-//        return ['products' => $products];
-//    }
+    public function mobileAction(Security $security)
+    {
+        $products = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Goods')
+            ->findBy(['category' => 1])
+        ;
+        return ['products' => $products, 'username' => $security->getUser()->getUsername()];
+    }
 
     /**
      * @Route("/tablet", name="user_tablet")

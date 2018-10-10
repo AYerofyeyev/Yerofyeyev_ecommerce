@@ -18,7 +18,7 @@ class GoodsType extends AbstractType
             ->add('name')
             ->add('specifications')
             ->add('price')
-            ->add('category', null, ['choice_label' => 'name', 'placeholder' => 'Select category:'])
+            ->add('category', null, ['choice_label' => 'name', 'placeholder' => 'Выберите категорию:'])
             ->add('submit', SubmitType::class)
         ;
     }/**
